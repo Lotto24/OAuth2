@@ -138,7 +138,7 @@ public class OAuth2PasswordGrant: OAuth2 {
 		req.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         
         if let data = req.HTTPBody  {
-            if clientConfig.httpAllowed {
+            if clientConfig.addHttpInfoToBodyForTesting {
                 NSURLProtocol.setProperty(data, forKey:  "HTTPBody", inRequest: req)
             }
         }
