@@ -56,6 +56,9 @@ public class OAuth2ClientConfig {
 	/// The URL to register a client against.
 	public final var registrationURL: NSURL?
 	
+    /// Whether http is allowed for testing purposes
+    public var httpAllowed = false
+    
 	/// How the client communicates the client secret with the server. Defaults to ".None" if there is no secret, ".ClientSecretPost" if
 	/// "secret_in_body" is `true` and ".ClientSecretBasic" otherwise. Interacts with the `authConfig.secretInBody` client setting.
 	public final var endpointAuthMethod = OAuth2EndpointAuthMethod.None
@@ -104,6 +107,11 @@ public class OAuth2ClientConfig {
 		if let assume = settings["token_assume_unexpired"] as? Bool {
 			accessTokenAssumeUnexpired = assume
 		}
+        
+        if let isHttpAllowed = settings["http_allowed"] as? Bool {
+            httpAllowed = isHttpAllowed
+        }
+        
 	}
 	
 	

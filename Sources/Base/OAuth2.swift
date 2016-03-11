@@ -316,9 +316,12 @@ public class OAuth2: OAuth2Base {
 		// compose URL base
 		let base = asTokenURL ? (clientConfig.tokenURL ?? clientConfig.authorizeURL) : clientConfig.authorizeURL
 		let comp = NSURLComponents(URL: base, resolvingAgainstBaseURL: true)
-		if nil == comp || "https" != comp!.scheme {
-			throw OAuth2Error.NotUsingTLS
-		}
+        
+        if !clientConfig.httpAllowed {
+            if nil == comp || "https" != comp!.scheme {
+                throw OAuth2Error.NotUsingTLS
+            }
+        }
 		
 		// compose the URL query component
 		comp!.percentEncodedQuery = OAuth2.queryStringFor(params)
