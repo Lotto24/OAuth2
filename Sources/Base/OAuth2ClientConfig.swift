@@ -59,8 +59,8 @@ public class OAuth2ClientConfig {
     /// Whether http is allowed for testing purposes
     public var httpAllowed = false
     
-    /// Needed for stubbing in unit tests
-    public var addHttpInfoToBodyForTesting = false
+    /// Needed for stubbing in unit tests using OHHTTPStubs library
+    public var addHttpBodyForStubbing = false
     
 	/// How the client communicates the client secret with the server. Defaults to ".None" if there is no secret, ".ClientSecretPost" if
 	/// "secret_in_body" is `true` and ".ClientSecretBasic" otherwise. Interacts with the `authConfig.secretInBody` client setting.
@@ -115,8 +115,8 @@ public class OAuth2ClientConfig {
             httpAllowed = isHttpAllowed
         }
         
-        if let addStubInfo = settings["enable_stubbing"] as? Bool {
-            addHttpInfoToBodyForTesting = addStubInfo
+        if let addBody = settings["enable_stubbing"] as? Bool {
+            addHttpBodyForStubbing = addBody
         }
 	}
 	

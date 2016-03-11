@@ -110,8 +110,8 @@ public class OAuth2ClientCredentials: OAuth2 {
 		}
 		req.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         
-        if let data = req.HTTPBody  {
-            if clientConfig.addHttpInfoToBodyForTesting {
+        if clientConfig.addHttpBodyForStubbing {
+            if let data = req.HTTPBody  {
                 NSURLProtocol.setProperty(data, forKey:  "HTTPBody", inRequest: req)
             }
         }
