@@ -56,10 +56,10 @@ public class OAuth2ClientConfig {
 	/// The URL to register a client against.
 	public final var registrationURL: NSURL?
 	
-    /// Whether http is allowed for testing purposes
+	/// Whether http is allowed for testing purposes
 	public var httpAllowed = false
     
-    /// Needed for stubbing in unit tests using OHHTTPStubs library
+	/// Needed for stubbing in unit tests using OHHTTPStubs library
 	public var addHttpBodyForStubbing = false
     
 	/// How the client communicates the client secret with the server. Defaults to ".None" if there is no secret, ".ClientSecretPost" if
