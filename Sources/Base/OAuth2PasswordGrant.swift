@@ -136,7 +136,13 @@ public class OAuth2PasswordGrant: OAuth2 {
 			}
 		}
 		req.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-		
+        
+		if clientConfig.addHttpBodyForStubbing {
+			if let data = req.HTTPBody  {
+				NSURLProtocol.setProperty(data, forKey:  "HTTPBody", inRequest: req)
+			}
+		}
+        
 		return req
 	}
 }
