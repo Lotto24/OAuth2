@@ -120,7 +120,7 @@ public class OAuth2PasswordGrant: OAuth2 {
 		var body = "grant_type=password&username=\(username.wwwFormURLEncodedString)&password=\(password.wwwFormURLEncodedString)"
         
         if !site.isEmpty {
-            body += "site=\(site)"
+            body += "&site=\(site)"
         }
 		if let scope = clientConfig.scope {
 			body += "&scope=\(scope.wwwFormURLEncodedString)"
