@@ -35,6 +35,9 @@ public class OAuth2PasswordGrant: OAuth2 {
 	
 	/// The user's password.
 	public var password: String
+    
+    /// The site parameter
+    public var site:String
 	
 	/**
 	Adds support for the "password" & "username" setting.
@@ -42,6 +45,7 @@ public class OAuth2PasswordGrant: OAuth2 {
 	public override init(settings: OAuth2JSON) {
 		username = settings["username"] as? String ?? ""
 		password = settings["password"] as? String ?? ""
+        site = settings["site"] as? String ?? ""
 		super.init(settings: settings)
 	}
 	
@@ -112,7 +116,12 @@ public class OAuth2PasswordGrant: OAuth2 {
 		req.setValue("application/json", forHTTPHeaderField: "Accept")
 		
 		// create body string
+        
 		var body = "grant_type=password&username=\(username.wwwFormURLEncodedString)&password=\(password.wwwFormURLEncodedString)"
+        
+        if !site.isEmpty {
+            body += "&site=\(site)"
+        }
 		if let scope = clientConfig.scope {
 			body += "&scope=\(scope.wwwFormURLEncodedString)"
 		}
